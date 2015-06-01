@@ -25,3 +25,4 @@ extend RsyslogCookbook::Helpers
 declare_rsyslog_service
 
 Includer.logging_by = 'rsyslog'
+node.run_state['logging_by_2'] = 'rsyslog'

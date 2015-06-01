@@ -13,8 +13,8 @@ template '/etc/syslog-ng/conf.d/alertlogic.conf' do
 end
 
 service 'syslog-ng' do
-  supports status: true, start: true, stop: true, restart: true, reload: true
   action [:enable, :start]
 end
 
 Includer.logging_by = 'syslog-ng'
+node.run_state['logging_by_2'] = 'syslog-ng'
