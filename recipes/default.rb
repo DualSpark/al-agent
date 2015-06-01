@@ -13,4 +13,5 @@ include_recipe 'al_agent::rsyslog' if rsyslog_detected?
 include_recipe 'al_agent::syslogng' if syslogng_detected?
 
 include_recipe 'al_agent::install'
-include_recipe 'al_agent::test_log'
+include_recipe 'al_agent::start' unless for_ami
+include_recipe 'al_agent::test_log' unless for_ami

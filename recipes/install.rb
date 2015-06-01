@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# ------------
-# agent_install
 cache_dir = Chef::Config[:file_cache_path]
 basename = agent_file(node['al_agent']['package']['url'])
 cached_package = ::File.join(cache_dir, basename)
@@ -19,11 +17,12 @@ remote_file basename do
   action :create_if_missing
 end
 
+# TODO: move out the package provider so this is cleaner.
 package basename do
   source cached_package
   action :install
   case node['platform_family']
-  when 'rhel'
+  when 'rhel', 'fedora'
     provider Chef::Provider::Package::Rpm
   when 'debian'
     provider Chef::Provider::Package::Dpkg
@@ -32,38 +31,17 @@ package basename do
   end
 end
 
-# --------------------
-log 'log: starting configuration'
-
-egress_host = node['al_agent']['agent']['egress_host']
-
+# TODO: the configure block does not have a guard because that controller_host always exists.
 execute "configure #{basename}" do
   user "root"
   cwd "/etc/init.d"
-  command "./al-agent configure"
-  not_if { ::File.exists?("/var/alertlogic/lib/agent/etc/controller_host") }
+  command "./al-agent configure #{configure_options}"
+  # not_if { ::File.exists?("/var/alertlogic/lib/agent/etc/controller_host") }
 end
 
-# bash "#{basename} configure" do
-#   user "root"
-#   code "/etc/init.d/al-agent configure"
-# end
-log 'log: end configuration'
-
-# --------------------
-log 'log: starting provision'
 execute "provision #{basename}" do
   user "root"
   cwd "/etc/init.d"
-  command "./al-agent provision --key #{node['al_agent']['agent']['registration_key']}"
+  command "./al-agent provision #{provision_options}"
   not_if { ::File.exists?("/var/alertlogic/etc/host_key.pem") }
 end
-log 'log: end provision'
-
-
-## -------------------
-log 'log: start service'
-service 'al-agent' do
-  action :start
-end
-log 'log: end service'
