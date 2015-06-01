@@ -12,6 +12,7 @@ gem 'berkshelf'
 gem "test-kitchen"
 gem "kitchen-vagrant"
 gem "kitchen-ec2"
+gem "winrm-transport"
 
 gem "rubocop"
 gem "foodcritic"
@@ -20,4 +21,4 @@ gem "chefspec"
 gem "fauxhai"
 
 gem "pry"
-gem 'pry-nav'
+gem "pry-nav"

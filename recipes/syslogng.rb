@@ -1,5 +1,3 @@
-log 'log: syslog-ng here'
-
 # the configuration directory for syslog-ng is stored in /etc/syslog-ng/conf.d/
 # create a file in the conf.d directory called alertlogic.conf
 
