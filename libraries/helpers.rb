@@ -24,18 +24,50 @@ def syslogng_detected?
   status
 end
 
+# TODO: detect iptables - do we want to do this, was it only for internal testing?
 def iptables_detected?
   true
 end
 
-def configuration_options
+def registration_key
+  node['al_agent']['agent']['registration_key']
+end
+
+# for_autoscaling: role ~> autoscaling = true, host ~> autoscaling = false
+def for_autoscaling
+  node['al_agent']['agent']['for_autoscaling']
+end
+
+# for_ami: configure ~> run just the configure commands, provision ~> run the provision command
+def for_ami
+  node['al_agent']['agent']['for_ami']
+end
+
+def egress_host
+  node['al_agent']['agent']['egress_host']
+end
+
+def egress_host_exists?
+  egress_host.size > 0
+end
+
+def inst_type_value
+  if for_ami
+    'role'
+  else
+    'host'
+  end
+end
+
+def configure_options
   options = []
-  options << "--host #{node['al_agent']['agent']['egress_host']}" if node['al_agent']['agent']['egress_host']
+  options << "--host #{egress_host}" if egress_host_exists?
   options.join(" ")
 end
 
-def provisioning_options
+def provision_options
   options = []
-  options << "--inst_type #{node['al_agent']['agent']['inst_type']}" if node['al_agent']['agent']['inst_type']
+  options << "--key #{registration_key}"
+  options << "--inst-type #{inst_type_value}"
   options.join(" ")
 end
