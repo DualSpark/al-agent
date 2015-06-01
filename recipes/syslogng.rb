@@ -16,5 +16,4 @@ service 'syslog-ng' do
   action [:enable, :start]
 end
 
-Includer.logging_by = 'syslog-ng'
-node.run_state['logging_by_2'] = 'syslog-ng'
+node.run_state['logging_by'] = 'syslog-ng'
