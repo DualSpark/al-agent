@@ -21,14 +21,7 @@ end
 package basename do
   source cached_package
   action :install
-  case node['platform_family']
-  when 'rhel', 'fedora'
-    provider Chef::Provider::Package::Rpm
-  when 'debian'
-    provider Chef::Provider::Package::Dpkg
-  when 'windows'
-    provider Chef::Provider::Package::Windows
-  end
+  provider package_type
 end
 
 # TODO: the configure block does not have a guard because that controller_host always exists.
