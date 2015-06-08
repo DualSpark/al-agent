@@ -47,18 +47,3 @@ when 'windows'
   # when to use the zip?
   # default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al_agent-LATEST.zip'
 end
-
-# 32-bit debian
-# https://scc.alertlogic.net/software/al-agent_LATEST_i386.deb
-# 64-bit debian
-# https://scc.alertlogic.net/software/al-agent_LATEST_amd64.deb
-
-# 32-bit rhel
-# https://scc.alertlogic.net/software/al-agent-LATEST-1.i386.rpm
-# 64-bit rhel
-# https://scc.alertlogic.net/software/al-agent-LATEST-1.x86_64.rpm
-
-# windows msi
-# https://scc.alertlogic.net/software/al_agent-LATEST.msi
-# windows zip
-# https://scc.alertlogic.net/software/al_agent-LATEST.zip
