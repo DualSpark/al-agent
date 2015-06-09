@@ -24,11 +24,6 @@ def syslogng_detected?
   ::File.exists?("/etc/syslog-ng/syslog-ng.conf")
 end
 
-# TODO: detect iptables - do we want to do this, was it only for internal testing?
-def iptables_detected?
-  false
-end
-
 def registration_key
   node['al_agent']['agent']['registration_key']
 end

@@ -1,5 +1,0 @@
-<% policies = node['al_agent']['agent']['firewall'] %>
-<% policies.each do |policy| %>
-  <% destination, port = policy.split(":") %>
-  <%= "-A OUTPUT -m tcp -p tcp -d #{destination} --dport #{port} -j ACCEPT" %>
-<% end %>
