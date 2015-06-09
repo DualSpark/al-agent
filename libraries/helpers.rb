@@ -26,7 +26,7 @@ end
 
 # TODO: detect iptables - do we want to do this, was it only for internal testing?
 def iptables_detected?
-  true
+  false
 end
 
 def registration_key
