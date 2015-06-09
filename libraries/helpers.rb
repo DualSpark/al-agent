@@ -38,14 +38,10 @@ def for_imaging
   node['al_agent']['agent']['for_imaging']
 end
 
-def egress_host
+def egress_url
   require 'uri'
-  uri = URI.parse(node['al_agent']['agent']['egress_host'])
+  uri = URI.parse(node['al_agent']['agent']['egress.url'])
   "#{uri.host}:#{uri.port}"
-end
-
-def egress_host_exists?
-  egress_host.size > 0
 end
 
 def inst_type_value
@@ -58,7 +54,7 @@ end
 
 def configure_options
   options = []
-  options << "--host #{egress_host}"
+  options << "--host #{egress_url}"
   options.join(" ")
 end
 
@@ -71,12 +67,12 @@ end
 
 def sensor_host
   require 'uri'
-  URI.parse(egress_host).host
+  URI.parse(egress_url).host
 end
 
 def sensor_port
   require 'uri'
-  URI.parse(egress_host).port || '443'
+  URI.parse(egress_url).port || '443'
 end
 
 def windows_options

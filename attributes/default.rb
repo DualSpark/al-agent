@@ -15,7 +15,7 @@ default['al_agent']['agent']['for_autoscaling'] = false
 default['al_agent']['agent']['for_imaging'] = false
 
 # Route egress to a particular host:port. The default is vaporator.alertlogic.com:443
-default['al_agent']['agent']['egress_host'] = 'https://vaporator.alertlogic.com:443'
+default['al_agent']['agent']['egress_url'] = 'https://vaporator.alertlogic.com:443'
 
 # iptables output chain policies
 default['al_agent']['agent']['firewall'] = ['https://vaporator.alertlogic.com:443']
