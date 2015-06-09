@@ -88,7 +88,7 @@ describe 'al_agent::default' do
           platform: 'centos',
           version: '6.6'
         ) do |node|
-          node.set['al_agent']['for_ami'] = true
+          node.set['al_agent']['for_imaging'] = true
         end.converge(described_recipe)
       }
 

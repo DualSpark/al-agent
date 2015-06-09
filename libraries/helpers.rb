@@ -33,9 +33,9 @@ def for_autoscaling
   node['al_agent']['agent']['for_autoscaling']
 end
 
-# for_ami: configure ~> run just the configure commands, provision ~> run the provision command
-def for_ami
-  node['al_agent']['agent']['for_ami']
+# for_imaging: configure ~> run just the configure commands, provision ~> run the provision command
+def for_imaging
+  node['al_agent']['agent']['for_imaging']
 end
 
 def egress_host
@@ -82,7 +82,7 @@ end
 def windows_options
   windows_options = ["/quiet prov_key=#{registration_key}"]
   windows_options << "prov_only=#{inst_type_value}"
-  windows_options << "install_only=1" if for_ami
+  windows_options << "install_only=1" if for_imaging
   windows_options << "sensor_host=#{sensor_host}"
   windows_options << "sensor_port=#{sensor_port}"
   windows_options.join(" ")
