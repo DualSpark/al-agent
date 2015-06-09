@@ -92,9 +92,9 @@ describe 'al_agent::default' do
         end.converge(described_recipe)
       }
 
-      it 'does not start the service' do
-        expect(chef_run).to_not start_service('al-agent')
-      end
+      # it 'does not start the service' do
+      #   expect(chef_run).to_not start_service('al-agent')
+      # end
     end
   end
 
