@@ -40,7 +40,7 @@ end
 
 def egress_url
   require 'uri'
-  uri = URI.parse(node['al_agent']['agent']['egress.url'])
+  uri = URI.parse(node['al_agent']['agent']['egress_url'])
   "#{uri.host}:#{uri.port}"
 end
 
