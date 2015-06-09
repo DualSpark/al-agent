@@ -1,6 +1,3 @@
-# the configuration directory for syslog-ng is stored in /etc/syslog-ng/conf.d/
-# create a file in the conf.d directory called alertlogic.conf
-
 template '/etc/syslog-ng/conf.d/alertlogic.conf' do
   source 'syslogng/alertlogic.conf.erb'
   owner 'root'

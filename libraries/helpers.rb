@@ -11,22 +11,22 @@ def agent_file(uri)
   Pathname.new(URI.parse(uri).path).basename.to_s
 end
 
+def package_type
+  node['al_agent']['package_type']
+end
+
 def rsyslog_detected?
   file_path = "#{node['rsyslog']['config_prefix']}/rsyslog.conf"
-  status = ::File.exists?("#{file_path}")
-  log "rsyslog_detected? #{file_path} found? #{status}"
-  status
+  ::File.exists?("#{file_path}")
 end
 
 def syslogng_detected?
-  status = ::File.exists?("/etc/syslog-ng/syslog-ng.conf")
-  log "syslogng_detected? #{status}"
-  status
+  ::File.exists?("/etc/syslog-ng/syslog-ng.conf")
 end
 
 # TODO: detect iptables - do we want to do this, was it only for internal testing?
 def iptables_detected?
-  true
+  false
 end
 
 def registration_key
@@ -44,7 +44,9 @@ def for_ami
 end
 
 def egress_host
-  node['al_agent']['agent']['egress_host']
+  require 'uri'
+  uri = URI.parse(node['al_agent']['agent']['egress_host'])
+  "#{uri.host}:#{uri.port}"
 end
 
 def egress_host_exists?
@@ -52,7 +54,7 @@ def egress_host_exists?
 end
 
 def inst_type_value
-  if for_ami
+  if for_autoscaling
     'role'
   else
     'host'
@@ -61,7 +63,7 @@ end
 
 def configure_options
   options = []
-  options << "--host #{egress_host}" if egress_host_exists?
+  options << "--host #{egress_host}"
   options.join(" ")
 end
 
@@ -70,4 +72,23 @@ def provision_options
   options << "--key #{registration_key}"
   options << "--inst-type #{inst_type_value}"
   options.join(" ")
+end
+
+def sensor_host
+  require 'uri'
+  URI.parse(egress_host).host
+end
+
+def sensor_port
+  require 'uri'
+  URI.parse(egress_host).port || '443'
+end
+
+def windows_options
+  windows_options = ["/quiet prov_key=#{registration_key}"]
+  windows_options << "prov_only=#{inst_type_value}"
+  windows_options << "install_only=1" if for_ami
+  windows_options << "sensor_host=#{sensor_host}"
+  windows_options << "sensor_port=#{sensor_port}"
+  windows_options.join(" ")
 end
