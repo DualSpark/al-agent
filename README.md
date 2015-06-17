@@ -38,7 +38,7 @@ Attributes
     <td><tt>['al_agent']['agent']['for_autoscaling']</tt></td>
     <td>Boolean</td>
     <td>
-      The for_autoscaling attribute determines if your installation will be configured as a `host` or `role` server.  By default for_autoscaling is set to `false` or in other words as a `host` install.  If autoscaling is set to `true` then the install is configured as a `role` server.
+      The for_autoscaling attribute determines if your installation will be configured as a <tt>host</tt> or <tt>role</tt> server.  By default for_autoscaling is set to <tt>false</tt> or in other words as a <tt>host</tt> install.  If autoscaling is set to <tt>true</tt> then the install is configured as a <tt>role</tt> server.
     </td>
     <td><tt>false</tt></td>
   </tr>
@@ -46,7 +46,7 @@ Attributes
     <td><tt>['al_agent']['agent']['for_imaging']</tt></td>
     <td>Boolean</td>
     <td>
-      The for_imaging attribute determines if the install process will continue or stop prior to provisioning.  If the for_imaging attribute is set to `true` then the install process perform an install only and stop before provisioning.  This allows for instance snapshots to be saved and started for later use.  With this attribute set to `false` then the provisioning process is performed during setup.
+      The <tt>for_imaging</tt> attribute determines if the install process will continue or stop prior to provisioning.  If the <tt>for_imaging</tt> attribute is set to <tt>true</tt> then the install process perform an install only and stop before provisioning.  This allows for instance snapshots to be saved and started for later use.  With this attribute set to <tt>false</tt> then the provisioning process is performed during setup.
     </td>
     <td><tt>false</tt></td>
   </tr>
@@ -60,7 +60,12 @@ Attributes
   </tr>  
 </table>
 
-
+<!-- | Key | Type | Description | Default |
+| ---- | :----: | ---- | ---- |
+| ['al_agent']['agent']['registration_key'] | String | required registration key | your_registration_key_here |
+| ['al_agent']['agent']['for_autoscaling'] | Boolean | The for_autoscaling attribute determines if your installation will be configured as a `host` or `role` server. By default for_autoscaling is set to `false` or in other words as a `host` install. If autoscaling is set to `true` then the install is configured as a `role` server. | false |
+| ['al_agent']['agent']['for_imaging'] | Boolean | The for_imaging attribute determines if the install process will continue or stop prior to provisioning. If the for_imaging attribute is set to `true` then the install process perform an install only and stop before provisioning. This allows for instance snapshots to be saved and started for later use. With this attribute set to `false` then the provisioning process is performed during setup. | false
+| ['al_agent']['agent']['egress_url'] | String | By default all traffic is sent to vaporator.alertlogic.com:443. This attribute is useful if you have a machine that is responsible for outbound traffic (NAT box). | https://vaporator.alertlogic.com:443 | -->
 
 Usage
 -----
@@ -100,7 +105,7 @@ Examples
 }
 ```
 
-##### A la carte recipe example (linux only)
+##### à la carte recipe example (linux only)
 ```json
 {
   "name":"my_server",
