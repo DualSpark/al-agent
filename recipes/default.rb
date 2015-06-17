@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if platform_family?("windows")
+if platform_family?('windows')
   include_recipe 'al_agent::windows'
 else
   include_recipe 'al_agent::_linux'

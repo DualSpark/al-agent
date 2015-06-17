@@ -25,15 +25,15 @@ end
 
 # TODO: the configure block does not have a guard because that controller_host always exists.
 execute "configure #{basename}" do
-  user "root"
-  cwd "/etc/init.d"
+  user 'root'
+  cwd '/etc/init.d'
   command "./al-agent configure #{configure_options}"
-  # not_if { ::File.exists?("/var/alertlogic/lib/agent/etc/controller_host") }
+  # not_if { ::File.exist?('/var/alertlogic/lib/agent/etc/controller_host') }
 end
 
 execute "provision #{basename}" do
-  user "root"
-  cwd "/etc/init.d"
+  user 'root'
+  cwd '/etc/init.d'
   command "./al-agent provision #{provision_options}"
-  not_if { ::File.exists?("/var/alertlogic/etc/host_key.pem") }
+  not_if { ::File.exist?('/var/alertlogic/etc/host_key.pem') }
 end

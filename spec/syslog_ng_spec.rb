@@ -21,5 +21,4 @@ describe 'al_agent::syslog_ng' do
   it 'starts the service' do
     expect(chef_run).to start_service('syslog-ng')
   end
-
 end

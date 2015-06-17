@@ -17,5 +17,4 @@ describe 'al_agent::rsyslog' do
     template = chef_run.template(alertlogic_conf_file)
     expect(template).to notify('service[rsyslog]').to(:restart)
   end
-
 end

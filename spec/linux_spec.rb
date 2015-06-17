@@ -6,17 +6,9 @@
 #   manipulator.should_receive(:save!)
 # end
 
-
 require 'spec_helper'
 
 describe 'al_agent::default' do
-
-  # before do
-  #   allow_any_instance_of(Chef::Config).to receive(:file_cache_path)
-  #     .and_return('/tmp')
-  # end
-
-
   context 'with ubuntu' do
     let(:chef_run) {
       ChefSpec::SoloRunner.new(

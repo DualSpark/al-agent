@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'al_agent::windows' do
-
   let(:chef_run) {
     ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge(described_recipe)
   }

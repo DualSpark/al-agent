@@ -17,11 +17,11 @@ end
 
 def rsyslog_detected?
   file_path = "#{node['rsyslog']['config_prefix']}/rsyslog.conf"
-  ::File.exists?(file_path})
+  ::File.exist?(file_path)
 end
 
 def syslogng_detected?
-  ::File.exists?("/etc/syslog-ng/syslog-ng.conf")
+  ::File.exist?('/etc/syslog-ng/syslog-ng.conf')
 end
 
 def registration_key
@@ -55,14 +55,14 @@ end
 def configure_options
   options = []
   options << "--host #{egress_url}"
-  options.join(" ")
+  options.join(' ')
 end
 
 def provision_options
   options = []
   options << "--key #{registration_key}"
   options << "--inst-type #{inst_type_value}"
-  options.join(" ")
+  options.join(' ')
 end
 
 def sensor_host
@@ -78,8 +78,8 @@ end
 def windows_options
   windows_options = ["/quiet prov_key=#{registration_key}"]
   windows_options << "prov_only=#{inst_type_value}"
-  windows_options << "install_only=1" if for_imaging
+  windows_options << 'install_only=1' if for_imaging
   windows_options << "sensor_host=#{sensor_host}"
   windows_options << "sensor_port=#{sensor_port}"
-  windows_options.join(" ")
+  windows_options.join(' ')
 end

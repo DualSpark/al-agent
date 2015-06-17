@@ -9,6 +9,6 @@
 
 include_recipe 'selinux_policy::install'
 selinux_policy_port '1514' do
-    protocol 'tcp'
-    secontext 'syslogd_port_t'
+  protocol 'tcp'
+  secontext 'syslogd_port_t'
 end

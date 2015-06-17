@@ -3,18 +3,12 @@
 default['al_agent']['agent']['registration_key'] = 'your_registration_key_here'
 
 # for_autoscaling:
-#   role ~> autoscaling = true
-#   host ~> autoscaling = false
-# On windows for_autoscaling true does prov_only=role
 default['al_agent']['agent']['for_autoscaling'] = false
 
 # for_imaging
-#   configure ~> run the configure command
-#   provision ~> only provision if for_imaging is false
-# On windows for_imaging does sends in the option install_only=1
 default['al_agent']['agent']['for_imaging'] = false
 
-# Route egress to a particular host:port. The default is vaporator.alertlogic.com:443
+# Route egress to a particular host:port. default is vaporator.alertlogic.com:443
 default['al_agent']['agent']['egress_url'] = 'https://vaporator.alertlogic.com:443'
 
 # packages

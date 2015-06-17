@@ -8,8 +8,8 @@ describe 'agent installation' do
   #   expect(port(1514)).to be_listening
   # end
 
-  it "has a running service of al-agent" do
-    expect(service("al-agent")).to be_running
+  it 'has a running service of al-agent' do
+    expect(service('al-agent')).to be_running
   end
 end
 
