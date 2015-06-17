@@ -125,7 +125,16 @@ The attributes `for_autoscaling` and `for_imaging` determine your installation t
 3. role when `for_autoscaling = true` and `for_imaging = false`
 4. role for imaging when `for_autoscaling = true` and `for_imaging = true`
 
-Performing an agent install with using the cookbooks default attributes, will setup the agent as a `host` type and provision the instance immediately *configuration 1*.  If you have properly set your registration key then your host should appear within Alert Logic's Console within 15 minutes.
+Performing an agent install using the cookbook's default attributes, will setup the agent as a `host` type and provision the instance immediately. see *configuration #1* above.  If you have properly set your registration key, your host should appear within Alert Logic's Console within 15 minutes.
+
+Testing
+-------
+
+In the root of the project:
+- to execute rubocop: `rubocop .`
+- to execute foodcritic: `foodcritic .`
+- to execute chefspec: `rspec spec`
+- to execute test kitchen: `kitchen test`
 
 
 Contributing
