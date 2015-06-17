@@ -12,6 +12,6 @@ end
 package basename do
   source cached_package
   action :nothing
-  options "#{windows_options}"
+  options windows_options
 end
 # reinstall causes an issue https://github.com/chef/chef/issues/3055s

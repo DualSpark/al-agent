@@ -17,7 +17,7 @@ end
 
 def rsyslog_detected?
   file_path = "#{node['rsyslog']['config_prefix']}/rsyslog.conf"
-  ::File.exists?("#{file_path}")
+  ::File.exists?(file_path})
 end
 
 def syslogng_detected?
