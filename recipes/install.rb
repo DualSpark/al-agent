@@ -17,7 +17,6 @@ remote_file basename do
   action :create_if_missing
 end
 
-# TODO: move out the package provider so this is cleaner.
 package basename do
   source cached_package
   action :install
