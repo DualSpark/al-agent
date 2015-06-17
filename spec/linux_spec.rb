@@ -10,12 +10,12 @@ require 'spec_helper'
 
 describe 'al_agent::default' do
   context 'with ubuntu' do
-    let(:chef_run) {
+    let(:chef_run) do
       ChefSpec::SoloRunner.new(
         platform: 'ubuntu',
         version: '12.04'
       ).converge(described_recipe)
-    }
+    end
     let(:package_name) { 'al-agent_LATEST_amd64.deb' }
     let(:remote_file) { "#{Chef::Config[:file_cache_path]}/#{package_name}" }
 
@@ -48,12 +48,12 @@ describe 'al_agent::default' do
   end
 
   context 'with debian' do
-    let(:chef_run) {
+    let(:chef_run) do
       ChefSpec::SoloRunner.new(
         platform: 'centos',
         version: '6.6'
       ).converge(described_recipe)
-    }
+    end
     let(:package_name) { 'al-agent-LATEST-1.x86_64.rpm' }
     let(:remote_file) { "#{Chef::Config[:file_cache_path]}/#{package_name}" }
 
@@ -75,19 +75,18 @@ describe 'al_agent::default' do
     end
 
     context 'for_imaging' do
-      let(:chef_run) {
+      let(:chef_run) do
         ChefSpec::SoloRunner.new(
           platform: 'centos',
           version: '6.6'
         ) do |node|
           node.set['al_agent']['for_imaging'] = true
         end.converge(described_recipe)
-      }
+      end
 
       # it 'does not start the service' do
       #   expect(chef_run).to_not start_service('al-agent')
       # end
     end
   end
-
 end

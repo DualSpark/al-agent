@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe 'al_agent::default' do
   context 'on the linux platform family' do
-    let(:chef_run) {
+    let(:chef_run) do
       ChefSpec::SoloRunner.new(
         platform: 'ubuntu',
         version: '12.04'
       ).converge(described_recipe)
-    }
+    end
 
     it 'includes the linux recipe' do
       expect(chef_run).to include_recipe('al_agent::_linux')
@@ -15,12 +15,12 @@ describe 'al_agent::default' do
   end
 
   context 'on the windows platform family' do
-    let(:chef_run) {
+    let(:chef_run) do
       ChefSpec::SoloRunner.new(
         platform: 'windows',
         version: '2012'
       ).converge(described_recipe)
-    }
+    end
 
     it 'includes the windows recipe' do
       expect(chef_run).to include_recipe('al_agent::windows')

@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe 'al_agent::windows' do
-  let(:chef_run) {
+  let(:chef_run) do
     ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge(described_recipe)
-  }
+  end
   let(:package_name) { 'al_agent-LATEST.msi' }
   let(:remote_file) { "#{Chef::Config[:file_cache_path]}/#{package_name}" }
 
@@ -18,7 +18,7 @@ describe 'al_agent::windows' do
       expect(download).to notify('windows_package[al_agent-LATEST.msi]').to(:install)
     end
 
-    # does not work on linux. TODO: test on a windows platform
+    # TODO: test on a windows platform
     # it 'installs the windows package' do
     #   expect(chef_run).to install_package('al_agent-LATEST.msi')
     # end

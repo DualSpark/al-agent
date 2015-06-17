@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe 'al_agent::syslog_ng' do
-  let(:chef_run) {
+  let(:chef_run) do
     ChefSpec::SoloRunner.new(
       platform: 'ubuntu',
       version: '12.04'
     ).converge(described_recipe)
-  }
+  end
   let(:alertlogic_conf_file) { '/etc/syslog-ng/conf.d/alertlogic.conf' }
 
   it 'creates an alertlogic.conf file' do
