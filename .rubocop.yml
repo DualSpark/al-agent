@@ -1,9 +1,6 @@
 AllCops:
   Exclude:
-    - 'Thorfile'
-    - 'Vagrantfile'
-    - 'metadata.rb'
     - 'vendor/**/*'
 
 Metrics/LineLength:
-  Max: 100
+  Max: 120
