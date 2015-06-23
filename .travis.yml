@@ -4,6 +4,7 @@ script:
   - 'bundle exec rubocop .'
   - 'bundle exec foodcritic -f ~FC033 .'
   - 'bundle exec rspec spec'
+  - 'bundle exec kitchen test'
 rvm:
   - 2.2.2
 gemfile:
