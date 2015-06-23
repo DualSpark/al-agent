@@ -38,18 +38,6 @@ def for_imaging
   node['al_agent']['agent']['for_imaging']
 end
 
-def egress_url
-  require 'uri'
-  egress = node['al_agent']['agent']['egress_url']
-  egress = "https://#{egress}" unless egress =~ %r{^http:\/\/}i || egress =~ %r{^https:\/\/}i
-  begin
-    uri = URI.parse(egress)
-  rescue
-    raise "Ensure the attribute ['al_agent']['agent']['egress_url'] is a valid URI."
-  end
-  "#{uri.host}:#{uri.port}"
-end
-
 def inst_type_value
   if for_autoscaling
     'role'
@@ -59,8 +47,11 @@ def inst_type_value
 end
 
 def configure_options
+  # TODO: why do I need to have the object fully scoped?
+  egress = Chef::Recipe::Egress.new(node)
+  puts "*************** --host #{egress.host} ***************"
   options = []
-  options << "--host #{egress_url}"
+  options << "--host #{egress.host}"
   options.join(' ')
 end
 
@@ -71,21 +62,12 @@ def provision_options
   options.join(' ')
 end
 
-def sensor_host
-  require 'uri'
-  URI.parse(egress_url).host
-end
-
-def sensor_port
-  require 'uri'
-  URI.parse(egress_url).port || '443'
-end
-
 def windows_options
+  egress = Chef::Recipe::Egress.new(node)
   windows_options = ["/quiet prov_key=#{registration_key}"]
   windows_options << "prov_only=#{inst_type_value}"
   windows_options << 'install_only=1' if for_imaging
-  windows_options << "sensor_host=#{sensor_host}"
-  windows_options << "sensor_port=#{sensor_port}"
+  windows_options << "sensor_host=#{egress.sensor_host}"
+  windows_options << "sensor_port=#{egress.sensor_port}"
   windows_options.join(' ')
 end
