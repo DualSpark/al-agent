@@ -2,7 +2,7 @@ language: ruby
 bundler_args: --without development
 script:
   - 'bundle exec rubocop .'
-  - 'bundle exec foodcritic .'
+  - 'bundle exec foodcritic -f ~FC033 .'
   - 'bundle exec rspec spec'
 rvm:
   - 2.2.2
