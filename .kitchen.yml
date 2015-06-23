@@ -25,18 +25,6 @@ suites:
   #     - recipe[al_agent::blank]
   #   attributes:
 
-  # - name: host
-  #   run_list:
-  #     - recipe[al_agent::host]
-  #   attributes:
-  #     nonscaling mode
-
-  # - name: role
-  #   run_list:
-  #     - recipe[al_agent::role]
-  #   attributes:
-  #    scaling mode
-
   # - name: configure
   #   run_list:
   #     - recipe[al_agent::configure]

@@ -40,7 +40,13 @@ end
 
 def egress_url
   require 'uri'
-  uri = URI.parse(node['al_agent']['agent']['egress_url'])
+  egress = node['al_agent']['agent']['egress_url']
+  egress = "https://#{egress}" unless egress =~ %r{^http:\/\/}i || egress =~ %r{^https:\/\/}i
+  begin
+    uri = URI.parse(egress)
+  rescue
+    raise "Ensure the attribute ['al_agent']['agent']['egress_url'] is a valid URI."
+  end
   "#{uri.host}:#{uri.port}"
 end
 

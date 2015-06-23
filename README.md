@@ -54,7 +54,7 @@ Attributes
     <td><tt>['al_agent']['agent']['egress_url']</tt></td>
     <td>String</td>
     <td>
-      By default all traffic is sent to vaporator.alertlogic.com:443.  This attribute is useful if you have a machine that is responsible for outbound traffic (NAT box).
+      By default all traffic is sent to https://vaporator.alertlogic.com:443.  This attribute is useful if you have a machine that is responsible for outbound traffic (NAT box).  If you specify your own URL ensure that it is a properly formatted URI.
     </td>
     <td><tt>https://vaporator.alertlogic.com:443</tt></td>
   </tr>  
@@ -135,6 +135,12 @@ In the root of the project:
 - to execute foodcritic: `foodcritic .`
 - to execute chefspec: `rspec spec`
 - to execute test kitchen: `kitchen test`
+
+
+Troubleshooting
+---------------
+
+If the cookbook fails at the provisioning step, one cause is that the agent cannot connect to the egress_url.  Ensure that the proper permissions are configured on the security groups and ACLs to allow for outbound access.  Also check your egress_url attribute and ensure that it is a properly formatted URI.
 
 
 Contributing

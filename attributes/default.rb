@@ -8,7 +8,7 @@ default['al_agent']['agent']['for_autoscaling'] = false
 # for_imaging
 default['al_agent']['agent']['for_imaging'] = false
 
-# Route egress to a particular host:port. default is vaporator.alertlogic.com:443
+# Route egress to a particular host:port. default is https://vaporator.alertlogic.com:443
 default['al_agent']['agent']['egress_url'] = 'https://vaporator.alertlogic.com:443'
 
 # packages
