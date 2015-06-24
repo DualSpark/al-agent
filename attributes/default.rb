@@ -34,6 +34,9 @@ when 'windows'
   default['al_agent']['package_type'] = Chef::Provider::Package::Windows
   default['al_agent']['install_platform']  = '_windows'
   default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al_agent-LATEST.msi'
-  # when to use the zip?
-  # default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al_agent-LATEST.zip'
+  if node['kernel']['machine'] == 'x86_64'
+    default['al_agent']['install_guard'] ='C:\Program Files (x86)\Common Files\AlertLogic\host_key.pem'
+  else
+    default['al_agent']['install_guard'] ='C:\Program Files\Common Files\AlertLogic\host_key.pem'
+  end
 end
