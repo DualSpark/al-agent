@@ -22,9 +22,5 @@ describe 'al_agent::windows' do
     # it 'installs the windows package' do
     #   expect(chef_run).to install_package('al_agent-LATEST.msi')
     # end
-
-    # it 'calls the methods for sensor host and senor port' do
-    #   expect(chef_run).to receive(:sensor_host)
-    # end
   end
 end

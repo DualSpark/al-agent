@@ -15,16 +15,15 @@ class Chef
       alias_method :sensor_host, :host
 
       def port
-        parsed_url.port || '443'
+        parsed_url.port || 443
       end
       alias_method :sensor_port, :port
 
       private
 
       def schemed_url
-        uri = URI.parse(url)
         schemed = url
-        schemed = "http://#{url}" unless uri.scheme
+        schemed = "http://#{url}" unless url =~ %r{^http:\/\/}i || url =~ %r{^https:\/\/}i
         schemed
       end
 
