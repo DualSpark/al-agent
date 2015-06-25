@@ -2,9 +2,8 @@ language: ruby
 bundler_args: --without development
 script:
   - 'bundle exec rubocop .'
-  - 'bundle exec foodcritic -f ~FC033 .'
+  - 'bundle exec foodcritic -f any .'
   - 'bundle exec rspec spec'
-  - 'bundle exec kitchen test'
 rvm:
   - 2.2.2
 gemfile:
@@ -12,3 +11,4 @@ gemfile:
 branches:
   only:
     - master
+    - feature/helper_namespace
