@@ -16,3 +16,5 @@ package basename do
   options windows_options
   not_if windows_install_guard
 end
+
+include_recipe 'al_agent::start' unless for_imaging
