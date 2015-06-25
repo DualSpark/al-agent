@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'al_agent::windows' do
+describe 'al_agent::_windows' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge(described_recipe)
   end
@@ -23,8 +23,30 @@ describe 'al_agent::windows' do
     #   expect(chef_run).to install_package('al_agent-LATEST.msi')
     # end
 
-    # it 'calls the methods for sensor host and senor port' do
-    #   expect(chef_run).to receive(:sensor_host)
-    # end
+    context 'with a specified egress_url' do
+      # context 'that doesn\'t have a scheme' do
+      #   let(:chef_run) do
+      #     ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2') do |node|
+      #       node.set['al_agent']['agent']['egress_url'] = 'vaporator.alertlogic.com:443'
+      #     end.converge(described_recipe)
+      #   end
+      #
+      #   it 'should run' do
+      #     expect(chef_run).to install_package('al_agent-LATEST.msi')
+      #   end
+      # end
+
+      context 'that has an invalid egress_url' do
+        let(:chef_run) do
+          ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2') do |node|
+            node.set['al_agent']['agent']['egress_url'] = 'bad_string'
+          end.converge(described_recipe)
+        end
+
+        it 'should return an error' do
+          expect { chef_run }.to raise_error
+        end
+      end
+    end
   end
 end

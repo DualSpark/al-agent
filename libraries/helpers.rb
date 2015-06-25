@@ -11,8 +11,16 @@ def agent_file(uri)
   Pathname.new(URI.parse(uri).path).basename.to_s
 end
 
+def service_name
+  node['al_agent']['agent']['service_name']
+end
+
 def package_type
   node['al_agent']['package_type']
+end
+
+def windows_install_guard
+  node['al_agent']['windows_install_guard']
 end
 
 def rsyslog_detected?
@@ -42,12 +50,13 @@ def egress_url
   require 'uri'
   egress = node['al_agent']['agent']['egress_url']
   egress = "https://#{egress}" unless egress =~ %r{^http:\/\/}i || egress =~ %r{^https:\/\/}i
+  puts "******** egress: #{egress}"
   begin
     uri = URI.parse(egress)
   rescue
     raise "Ensure the attribute ['al_agent']['agent']['egress_url'] is a valid URI."
   end
-  "#{uri.host}:#{uri.port}"
+  "#{uri.scheme}://#{uri.host}:#{uri.port}"
 end
 
 def inst_type_value
@@ -60,7 +69,7 @@ end
 
 def configure_options
   options = []
-  options << "--host #{egress_url}"
+  options << "--host #{sensor_host}:#{sensor_port}"
   options.join(' ')
 end
 
