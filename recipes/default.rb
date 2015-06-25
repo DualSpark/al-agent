@@ -8,7 +8,7 @@
 #
 
 if platform_family?('windows')
-  include_recipe 'al_agent::windows'
+  include_recipe 'al_agent::_windows'
 else
   include_recipe 'al_agent::_linux'
 end

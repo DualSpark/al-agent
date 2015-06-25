@@ -11,8 +11,16 @@ def agent_file(uri)
   Pathname.new(URI.parse(uri).path).basename.to_s
 end
 
+def service_name
+  node['al_agent']['agent']['service_name']
+end
+
 def package_type
   node['al_agent']['package_type']
+end
+
+def windows_install_guard
+  node['al_agent']['windows_install_guard']
 end
 
 def rsyslog_detected?
@@ -47,11 +55,10 @@ def inst_type_value
 end
 
 def configure_options
-  # TODO: why do I need to have the object fully scoped?
   egress = Chef::Recipe::Egress.new(node)
   puts "*************** --host #{egress.host} ***************"
   options = []
-  options << "--host #{egress.host}"
+  options << "--host #{egress.host}:#{egress.port}"
   options.join(' ')
 end
 

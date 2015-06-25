@@ -1,3 +1,3 @@
-service 'al-agent' do
+service service_name do
   action :start
 end

@@ -6,12 +6,13 @@ remote_file basename do
   path cached_package
   source node['al_agent']['package']['url']
   action :create_if_missing
-  notifies :install, "package[#{basename}]", :immediately
 end
 
+# test kitchen issue: the reinstall causes an issue
+#   https://github.com/chef/chef/issues/3055s
 package basename do
   source cached_package
-  action :nothing
+  action :install
   options windows_options
+  not_if windows_install_guard
 end
-# reinstall causes an issue https://github.com/chef/chef/issues/3055s

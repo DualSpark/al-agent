@@ -16,7 +16,8 @@ default['al_agent']['package']['name'] = 'al-agent'
 case node['platform_family']
 when 'rhel', 'fedora'
   default['al_agent']['package_type'] = Chef::Provider::Package::Rpm
-  default['al_agent']['install_platform']  = '_linux'
+  # default['al_agent']['install_platform']  = 'linux'
+  default['al_agent']['agent']['service_name'] = 'al-agent'
   if node['kernel']['machine'] == 'x86_64'
     default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al-agent-LATEST-1.x86_64.rpm'
   else
@@ -24,7 +25,8 @@ when 'rhel', 'fedora'
   end
 when 'debian'
   default['al_agent']['package_type'] = Chef::Provider::Package::Dpkg
-  default['al_agent']['install_platform']  = '_linux'
+  # default['al_agent']['install_platform']  = 'linux'
+  default['al_agent']['agent']['service_name'] = 'al-agent'
   if node['kernel']['machine'] == 'x86_64'
     default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al-agent_LATEST_amd64.deb'
   else
@@ -32,8 +34,12 @@ when 'debian'
   end
 when 'windows'
   default['al_agent']['package_type'] = Chef::Provider::Package::Windows
-  default['al_agent']['install_platform']  = '_windows'
+  # default['al_agent']['install_platform']  = 'windows'
+  default['al_agent']['agent']['service_name'] = 'al_agent'
   default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al_agent-LATEST.msi'
-  # when to use the zip?
-  # default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al_agent-LATEST.zip'
+  if node['kernel']['machine'] == 'x86_64'
+    default['al_agent']['windows_install_guard'] = 'C:\Program Files (x86)\Common Files\AlertLogic\prov_key.pem'
+  else
+    default['al_agent']['windows_install_guard'] = 'C:\Program Files\Common Files\AlertLogic\prov_key.pem'
+  end
 end
