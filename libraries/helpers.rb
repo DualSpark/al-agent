@@ -56,7 +56,6 @@ end
 
 def configure_options
   egress = Chef::Recipe::Egress.new(node)
-  puts "*************** --host #{egress.host} ***************"
   options = []
   options << "--host #{egress.host}:#{egress.port}"
   options.join(' ')

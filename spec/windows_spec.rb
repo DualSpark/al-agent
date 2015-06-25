@@ -8,6 +8,10 @@ describe 'al_agent::_windows' do
   let(:remote_file) { "#{Chef::Config[:file_cache_path]}/#{package_name}" }
 
   context 'windows family' do
+    before do
+      stub_command("C:\\Program Files (x86)\\Common Files\\AlertLogic\\prov_key.pem").and_return(false)
+    end
+
     it 'downloads the file' do
       expect(chef_run).to create_remote_file_if_missing("#{remote_file}")
     end

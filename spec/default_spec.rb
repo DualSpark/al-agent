@@ -22,8 +22,12 @@ describe 'al_agent::default' do
       ).converge(described_recipe)
     end
 
+    before do
+      stub_command("C:\\Program Files (x86)\\Common Files\\AlertLogic\\prov_key.pem").and_return(false)
+    end
+
     it 'includes the windows recipe' do
-      expect(chef_run).to include_recipe('al_agent::windows')
+      expect(chef_run).to include_recipe('al_agent::_windows')
     end
   end
 end
