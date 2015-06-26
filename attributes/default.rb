@@ -33,8 +33,8 @@ when 'windows'
   default['al_agent']['agent']['service_name'] = 'al_agent'
   default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al_agent-LATEST.msi'
   if node['kernel']['machine'] == 'x86_64'
-    default['al_agent']['windows_install_guard'] = 'C:\Program Files (x86)\Common Files\AlertLogic\prov_key.pem'
+    default['al_agent']['windows_install_guard'] = 'C:\Program Files (x86)\Common Files\AlertLogic\host_key.pem'
   else
-    default['al_agent']['windows_install_guard'] = 'C:\Program Files\Common Files\AlertLogic\prov_key.pem'
+    default['al_agent']['windows_install_guard'] = 'C:\Program Files\Common Files\AlertLogic\host_key.pem'
   end
 end
