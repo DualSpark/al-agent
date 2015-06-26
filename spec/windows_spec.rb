@@ -9,7 +9,7 @@ describe 'al_agent::_windows' do
 
   context 'windows family' do
     before do
-      stub_command('C:\\Program Files (x86)\\Common Files\\AlertLogic\\prov_key.pem')\
+      stub_command('C:\\Program Files (x86)\\Common Files\\AlertLogic\\host_key.pem')\
         .and_return(false)
     end
 
