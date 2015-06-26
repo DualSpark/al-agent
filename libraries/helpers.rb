@@ -71,7 +71,7 @@ end
 def windows_options
   egress = Chef::Recipe::Egress.new(node)
   windows_options = ["/quiet prov_key=#{registration_key}"]
-  windows_options << "prov_only=#{inst_type_value}"
+  windows_options << "prov_only=#{inst_type_value}" unless for_imaging
   windows_options << 'install_only=1' if for_imaging
   windows_options << "sensor_host=#{egress.sensor_host}"
   windows_options << "sensor_port=#{egress.sensor_port}"
