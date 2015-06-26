@@ -17,14 +17,9 @@ describe 'al_agent::_windows' do
     end
 
     # https://github.com/sethvargo/chefspec/issues/401
-    it 'notifies the package to install' do
-      download = chef_run.remote_file('al_agent-LATEST.msi')
-      expect(download).to notify('windows_package[al_agent-LATEST.msi]').to(:install)
-    end
-
-    # TODO: test on a windows platform
-    # it 'installs the windows package' do
-    #   expect(chef_run).to install_package('al_agent-LATEST.msi')
+    # it 'notifies the package to install' do
+    #   download = chef_run.remote_file('al_agent-LATEST.msi')
+    #   expect(download).to notify('windows_package[al_agent-LATEST.msi]').to(:install)
     # end
 
     context 'with a specified egress_url' do
