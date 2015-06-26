@@ -1,6 +1,6 @@
 require 'spec_helper'
-# Chef::Recipe
 class Chef
+  # namespaced to Chef::Recipe
   class Recipe
     describe 'Egress' do
       # context 'unit testing' do
