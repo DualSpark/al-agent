@@ -15,8 +15,6 @@ The following platforms are tested directly under test kitchen.
 #### Cookbook Dependencies
 - selinux_policy
 - rsyslog
-- syslog-ng
-
 
 Attributes
 ----------
