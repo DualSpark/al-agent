@@ -8,4 +8,3 @@ version '0.1.0'
 
 depends 'selinux_policy'
 depends 'rsyslog'
-depends 'syslog-ng'
