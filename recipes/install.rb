@@ -17,13 +17,13 @@ remote_file basename do
   action :create_if_missing
 end
 
+# let ubuntu know to use dpkg not apt
 package basename do
   source cached_package
   action :install
-  provider package_type
+  provider Chef::Provider::Package::Dpkg if node['platform_family'] == 'debian'
 end
 
-# TODO: the configure block does not have a guard because that controller_host always exists.
 execute "configure #{basename}" do
   user 'root'
   cwd '/etc/init.d'
