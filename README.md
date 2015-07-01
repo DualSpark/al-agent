@@ -13,8 +13,9 @@ The following platforms are tested directly under test kitchen.
 - fedora-19
 
 #### Cookbook Dependencies
-- selinux_policy
 - rsyslog
+- line
+- selinux_policy
 
 Attributes
 ----------
