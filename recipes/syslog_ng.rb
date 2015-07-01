@@ -5,9 +5,6 @@ directory '/etc/syslog-ng/conf.d' do
   mode '0755'
 end
 
-puts '**********************'
-puts "syslog_ng_pre33: #{syslog_ng_pre33}"
-
 append_if_no_line 'include alertlogic.conf' do
   path '/etc/syslog-ng/syslog-ng.conf'
   line "include '/etc/syslog-ng/conf.d/alertlogic.conf';"
