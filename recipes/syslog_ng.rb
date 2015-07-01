@@ -1,8 +1,24 @@
+directory '/etc/syslog-ng/conf.d' do
+  owner 'root'
+  group 'root'
+  recursive true
+  mode '0755'
+end
+
+puts '**********************'
+puts "syslog_ng_pre33: #{syslog_ng_pre33}"
+
+append_if_no_line 'include alertlogic.conf' do
+  path '/etc/syslog-ng/syslog-ng.conf'
+  line "include '/etc/syslog-ng/conf.d/alertlogic.conf';"
+end if syslog_ng_pre33
+
 template '/etc/syslog-ng/conf.d/alertlogic.conf' do
   source 'syslog_ng/alertlogic.conf.erb'
   owner 'root'
   group 'root'
   mode '0644'
+  variables(source_log: node['al_agent']['syslog_ng']['source_log'])
   notifies :restart, 'service[syslog-ng]'
   not_if { ::File.exist?('/etc/syslog-ng/conf.d/alertlogic.conf') }
 end

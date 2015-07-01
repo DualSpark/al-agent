@@ -15,21 +15,8 @@ def service_name
   node['al_agent']['agent']['service_name']
 end
 
-def package_type
-  node['al_agent']['package_type']
-end
-
 def windows_install_guard
   node['al_agent']['windows_install_guard']
-end
-
-def rsyslog_detected?
-  file_path = "#{node['rsyslog']['config_prefix']}/rsyslog.conf"
-  ::File.exist?(file_path)
-end
-
-def syslogng_detected?
-  ::File.exist?('/etc/syslog-ng/syslog-ng.conf')
 end
 
 def registration_key
@@ -44,6 +31,27 @@ end
 # for_imaging: configure ~> run just the configure commands, provision ~> run the provision command
 def for_imaging
   node['al_agent']['agent']['for_imaging']
+end
+
+def rsyslog_detected?
+  file_path = "#{node['rsyslog']['config_prefix']}/rsyslog.conf"
+  ::File.exist?(file_path)
+end
+
+def syslogng_detected?
+  ::File.exist?('/etc/syslog-ng/syslog-ng.conf')
+end
+
+def syslog_ng_pre33
+  vers = Mixlib::ShellOut.new('syslog-ng -V')
+  vers.run_command
+  syslog_ng_version(vers.stdout) <= 3.2 ? true : false
+end
+
+def syslog_ng_version(t)
+  version = t.split(/\n/)[0]
+  version_value = version.split[1].to_f
+  version_value
 end
 
 def inst_type_value

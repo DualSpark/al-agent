@@ -13,6 +13,7 @@ default['al_agent']['package']['name'] = 'al-agent'
 case node['platform_family']
 when 'rhel', 'fedora'
   default['al_agent']['agent']['service_name'] = 'al-agent'
+  default['al_agent']['syslog_ng']['source_log'] = 's_sys'
   if node['kernel']['machine'] == 'x86_64'
     default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al-agent-LATEST-1.x86_64.rpm'
   else
@@ -20,6 +21,7 @@ when 'rhel', 'fedora'
   end
 when 'debian'
   default['al_agent']['agent']['service_name'] = 'al-agent'
+  default['al_agent']['syslog_ng']['source_log'] = 's_src'
   if node['kernel']['machine'] == 'x86_64'
     default['al_agent']['package']['url'] = 'https://scc.alertlogic.net/software/al-agent_LATEST_amd64.deb'
   else
