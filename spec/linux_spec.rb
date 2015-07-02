@@ -28,7 +28,6 @@ describe 'al_agent::default' do
     end
 
     it 'creates a controller_host file? || it executes the configure command' do
-      # expect(chef_run).to render_file('/var/alertlogic/lib/agent/etc/controller_host')
       expect(chef_run).to run_execute("configure #{package_name}")
     end
 
@@ -39,8 +38,6 @@ describe 'al_agent::default' do
     it 'starts al-agent' do
       expect(chef_run).to start_service('al-agent')
     end
-
-    # TODO: how do I handle a helper method!!
 
     it 'logs data' do
       expect(chef_run).to run_execute('logging')
@@ -66,7 +63,6 @@ describe 'al_agent::default' do
     end
 
     it 'creates a controller_host file? || it executes the configure command' do
-      # expect(chef_run).to render_file('/var/alertlogic/lib/agent/etc/controller_host')
       expect(chef_run).to run_execute("configure #{package_name}")
     end
 
