@@ -11,4 +11,3 @@ gemfile:
 branches:
   only:
     - master
-    - feature/helper_namespace
