@@ -20,13 +20,13 @@ The following platforms are tested directly under test kitchen.
 Attributes
 ----------
 
+* `['al_agent']['agent']['registration_key']` - your required registration key. String defaults to `your_registration_key_here`
 
-<ul>
-  <li><code>['al_agent']['agent']['registration_key']</code> - your required registration key. String defaults to <code>your_registration_key_here</code></li>
-  <li><code>['al_agent']['agent']['for_autoscaling']</code> - The for_autoscaling attribute determines if your installation will be configured as a <code>host</code> or <code>role</code> server.  By default for_autoscaling is set to <code>false</code> or in other words as a <code>host</code> install.  If autoscaling is set to <code>true</code> then the install is configured as a <code>role</code> server. Boolean defaults to <code>false</code></li>
-  <li><code>['al_agent']['agent']['for_imaging']</code> - The <code>for_imaging</code> acoderibute determines if the install process will continue or stop prior to provisioning.  If the <code>for_imaging</code> acoderibute is set to <code>true</code> then the install process perform an install only and stop before provisioning.  This allows for instance snapshots to be saved and started for later use.  With this acoderibute set to <code>false</code> then the provisioning process is performed during setup.  Boolean defaults to <code>false</code></li>
-  <li><code>['al_agent']['agent']['egress_url']</code> - By default all traffic is sent to https://vaporator.alertlogic.com:443.  This attribute is useful if you have a machine that is responsible for outbound traffic (NAT box).  If you specify your own URL ensure that it is a properly formatted URI.  String defaults to <code>https://vaporator.alertlogic.com:443</code></li>
-</ul>
+* `['al_agent']['agent']['for_autoscaling']` - The for_autoscaling attribute determines if your installation will be configured as a `host` or `role` server.  By default for_autoscaling is set to `false` or in other words as a `host` install.  If autoscaling is set to `true` then the install is configured as a `role` server. Boolean defaults to `false`
+
+* `['al_agent']['agent']['for_imaging']` - The `for_imaging` acoderibute determines if the install process will continue or stop prior to provisioning.  If the `for_imaging` acoderibute is set to `true` then the install process perform an install only and stop before provisioning.  This allows for instance snapshots to be saved and started for later use.  With this acoderibute set to `false` then the provisioning process is performed during setup.  Boolean defaults to `false`
+
+* `['al_agent']['agent']['egress_url']` - By default all traffic is sent to https://vaporator.alertlogic.com:443.  This attribute is useful if you have a machine that is responsible for outbound traffic (NAT box).  If you specify your own URL ensure that it is a properly formatted URI.  String defaults to `https://vaporator.alertlogic.com:443`
 
 Usage
 -----
@@ -93,8 +93,11 @@ Testing
 
 In the root of the project:
 - to execute rubocop: `rubocop .`
+
 - to execute foodcritic: `foodcritic .`
+
 - to execute chefspec: `rspec spec`
+
 - to execute test kitchen: `kitchen test`
 
 
