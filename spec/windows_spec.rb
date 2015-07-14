@@ -34,6 +34,20 @@ describe 'al_agent::_windows' do
         end
       end
 
+      context 'with a specified egress_url' do
+        context 'and for_imaging' do
+          let(:chef_run) do
+            ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2') do |node|
+              node.set['al_agent']['agent']['for_imaging'] = true
+            end.converge(described_recipe)
+          end
+
+          it 'does not starts the service' do
+            expect(chef_run).to_not start_service('al_agent')
+          end
+        end
+      end
+
       # fails on travisci
       # context 'that has an invalid egress_url' do
       #   let(:chef_run) do

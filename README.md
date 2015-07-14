@@ -21,11 +21,8 @@ Attributes
 ----------
 
 * `['al_agent']['agent']['registration_key']` - your required registration key. String defaults to `your_registration_key_here`
-
 * `['al_agent']['agent']['for_autoscaling']` - The for_autoscaling attribute determines if your installation will be configured as a `host` or `role` server.  By default for_autoscaling is set to `false` or in other words as a `host` install.  If autoscaling is set to `true` then the install is configured as a `role` server. Boolean defaults to `false`
-
-* `['al_agent']['agent']['for_imaging']` - The `for_imaging` acoderibute determines if the install process will continue or stop prior to provisioning.  If the `for_imaging` acoderibute is set to `true` then the install process perform an install only and stop before provisioning.  This allows for instance snapshots to be saved and started for later use.  With this acoderibute set to `false` then the provisioning process is performed during setup.  Boolean defaults to `false`
-
+* `['al_agent']['agent']['for_imaging']` - The `for_imaging` attribute determines if the install process will continue or stop prior to provisioning.  If the `for_imaging` attribute is set to `true` then the install process perform an install only and stop before provisioning.  This allows for instance snapshots to be saved and started for later use.  With this attribute set to `false` then the provisioning process is performed during setup.  Boolean defaults to `false`
 * `['al_agent']['agent']['egress_url']` - By default all traffic is sent to https://vaporator.alertlogic.com:443.  This attribute is useful if you have a machine that is responsible for outbound traffic (NAT box).  If you specify your own URL ensure that it is a properly formatted URI.  String defaults to `https://vaporator.alertlogic.com:443`
 
 Usage
@@ -92,13 +89,10 @@ Testing
 -------
 
 In the root of the project:
-- to execute rubocop: `rubocop .`
-
-- to execute foodcritic: `foodcritic .`
-
-- to execute chefspec: `rspec spec`
-
-- to execute test kitchen: `kitchen test`
+* to execute rubocop: `rubocop .`
+* to execute foodcritic: `foodcritic .`
+* to execute chefspec: `rspec spec`
+* to execute test kitchen: `kitchen test`
 
 
 Troubleshooting
